@@ -10,11 +10,12 @@
   <body>
     <div class="navbar">
       <div class="logo">Card Generator</div>
-      <ul class="menu">
+      <ul class="menu uppercase">
         <li><a href="#">Home</a></li>
         <li><a href="#">Cards</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
+        <li><a href="#">Login/Register</a></li>
       </ul>
     </div>
     <div class="header">
@@ -23,72 +24,78 @@
         Welcome to BrandCrowd... The World's #1 Visiting Card Maker. Try it for
         FREE!
       </h2>
-      <div class="create-card">
+      <form action="" class="create-card">
         <input type="text" placeholder="Enter Your Business Name" />
-        <button type="submit">Create Cards</button>
-        <span><img src="./img/arrow.png" alt=""/></span>
-      </div>
-      <span class="uppercase slogan">See How it Works</span>
+        <button type="submit" class="uppercase">Create Cards</button>
+      </form>
+      <a href="#howitworks" class="uppercase slogan">See How it Works</a>
     </div>
     <div class="card-showcase">
       <h1 class="main-heading">
         Make a visiting card you'll love, instantly. Try for free.
       </h1>
-      <h2 class="secondary-heading">
+      <p class="semi-dark-para">
         Whether you need cards for your startup, a real estate business or a
         wedding, we can help you generate thousands of cards in seconds.
-      </h2>
-      <div class="card-template"></div>
-      <div class="card-template"></div>
-      <div class="card-template"></div>
-      <div class="browse">browse all the logos</div>
+      </p>
+      <div class="card-template">
+        <div class="card-template"></div>
+        <div class="card-template"></div>
+        <div class="card-template"></div>
+      </div>
+      <a href="#" class="browse uppercase">browse all the logos</a>
     </div>
-    <div class="howitworks">
-      <h1 class="main-heading">Generate 1000's of logo ideas in seconds</h1>
-      <h2 class="secondary-heading">
-        BrandCrowd has thoughts of unique, premium logo design ideas created by
-        designers from around the world. Here's how it works:
-      </h2>
+    <div class="howitworks" id="howitworks">
+      <h1 class="main-heading">
+        Generate 1000's of visiting card ideas in seconds
+      </h1>
+      <p class="semi-dark-para">
+        BrandCrowd has thoughts of unique, premium visiting card design ideas
+        created by designers from around the world. Here's how it works:
+      </p>
       <div class="showcase">
         <div>
           <div class="number">1</div>
           <img src="./img/search.png" alt="" />
-          <p>Generate logos</p>
+          <p class="dark-para">Generate cards</p>
           <p>
             Enter your business name and our
-            <span class="special">Visisting Card Maker</span> will generate logo
-            ideas in seconds.
+            <a href="#" class="special">Visisting Card Maker</a> will generate
+            logo ideas in seconds.
           </p>
         </div>
         <div>
-          <div class="number">1</div>
-          <img src="./img/search.png" alt="" />
-          <p>Generate logos</p>
+          <div class="number">2</div>
+          <img src="./img/edit.png" alt="" />
+          <p class="dark-para">Edit your card</p>
           <p>
-            Enter your business name and our
-            <span class="special">Visisting Card Maker</span> will generate logo
-            ideas in seconds.
+            Change colours, fonts, add a tagline... Our card maker is 100%
+            customizable and easy to use.
           </p>
         </div>
         <div>
-          <div class="number">1</div>
-          <img src="./img/search.png" alt="" />
-          <p>Generate logos</p>
+          <div class="number">3</div>
+          <img src="./img/download.png" alt="" />
+          <p class="dark-para">Download your card!</p>
           <p>
-            Enter your business name and our
-            <span class="special">Visisting Card Maker</span> will generate logo
-            ideas in seconds.
+            Download your card files and start sharing it with the world!
           </p>
         </div>
       </div>
     </div>
     <div class="footer">
       <div class="social-link">
-        <span>facebook</span>
-        <span>google+</span>
-        <span>twitter</span>
+        <a href="#">facebook</a>
+        <a href="#">google+</a>
+        <a href="#">twitter</a>
       </div>
       <p>&copy; 2019 Mohammed Khaled Uddin</p>
     </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/navigation.js"></script>
   </body>
 </html>
