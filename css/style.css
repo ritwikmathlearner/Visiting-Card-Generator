@@ -65,8 +65,8 @@ h2 {
   align-items: center;
   background: linear-gradient(
       0deg,
-      rgba(46, 47, 48, 0.3),
-      rgba(46, 47, 48, 0.3)
+      rgba(46, 47, 48, 0.6),
+      rgba(46, 47, 48, 0.6)
     ),
     url("../img/header-bg.jpg") no-repeat center center/cover;
 }
