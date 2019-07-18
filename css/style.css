@@ -120,7 +120,7 @@ h2 {
   color: #2e2f30;
 }
 .card-showcase {
-  height: 70vh;
+  height: 80vh;
   width: 100%;
   background: #e6e7e8;
   display: flex;
@@ -150,7 +150,7 @@ h2 {
   color: #5f6061;
 }
 .howitworks {
-  height: 70vh;
+  height: 90vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -169,6 +169,7 @@ h2 {
 .showcase > div {
   height: 100%;
   width: 100%;
+  padding: 0 .75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
