@@ -1,3 +1,8 @@
+<?php
+error_reporting(0);
+session_start();
+include 'connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,49 +16,76 @@
     <div class="navbar">
       <div class="visiting card">Card Generator</div>
       <ul class="menu uppercase">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Cards</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login/Register</a></li>
+      <li><a href="index.php">Home</a></li>
+        <li><a href="card.php">Cards</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <?php 
+            if(!isset($_SESSION["customer"])) {
+        ?>
+        <li><a href="login.php">Login/Register</a></li>
+        <?php 
+            } else {
+        ?>
+            <li><a href="logout.php">Logout</a></li>
+            <li><a href="account.php">Account</a></li>
+        <?php } ?>
       </ul>
     </div>
     <div class="header half-page">
-      <h1 class="primary-heading">About Us</h1>
+      <h1 class="primary-heading">Welcome 
+        <?php
+            echo $_SESSION["customer"];
+        ?>
+      </h1>
     </div>
     <div class="description">
         <h1 class="main-heading underline">
-            Welcome to Card generator
+            Your Pending Cards
         </h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae harum at reiciendis dolorem laboriosam perferendis, itaque recusandae deleniti velit eligendi doloribus minus voluptatibus nulla ea id, expedita fuga neque alias numquam! Cum deserunt necessitatibus nobis. Repellat, deleniti distinctio harum tempore perspiciatis eaque molestias repellendus, adipisci nisi eos, hic voluptas ducimus.</p>
-        <div class="team">
-            <h2 class="main-heading">
-                Meet Our Team
-            </h2>
-            <div class="team-members">
-                <div>
-                    <img src="./img/member1.png" alt="">
-                    <p class="main-heading">
-                        Liam Huie
-                    </p>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae dolorum reprehenderit, rem enim commodi architecto voluptas voluptatibus consectetur amet tenetur maiores natus necessitatibus perferendis! Aliquid, eum. Repellat, voluptate! Ipsam, id.</p>
-                </div>
-                <div>
-                    <img src="./img/member2.png" alt="">
-                    <p class="main-heading">
-                        Liam Huie
-                    </p>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae dolorum reprehenderit, rem enim commodi architecto voluptas voluptatibus consectetur amet tenetur maiores natus necessitatibus perferendis! Aliquid, eum. Repellat, voluptate! Ipsam, id.</p>
-                </div>
-                <div>
-                    <img src="./img/member3.jpg" alt="">
-                    <p class="main-heading">
-                        Liam Huie
-                    </p>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae dolorum reprehenderit, rem enim commodi architecto voluptas voluptatibus consectetur amet tenetur maiores natus necessitatibus perferendis! Aliquid, eum. Repellat, voluptate! Ipsam, id.</p>
-                </div>
-            </div>
-        </div>
+        <?php
+          $sql = "SELECT cardID, name, designation, cardType FROM visitingcard where status='pending'";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+        ?>
+        <table class="cards">
+            <tr>
+              <th>Card ID</th>
+              <th>Name on Card</th>
+              <th>Designation</th>
+              <th>Card Type</th>
+              <th>Action</th>
+            </tr>
+        <?php
+              while($row = $result->fetch_assoc()) {
+                ?>
+                    <tr>
+                      <td><?php echo $row["cardID"] ?></td>
+                      <td><?php echo $row["name"] ?></td>
+                      <td><?php echo $row["designation"] ?></td>
+                      <td><?php echo $row["cardType"] ?></td>
+                      <td><button type="submit" name="download">Preview</button></td>
+                    </tr>
+                <?php
+              } 
+              echo '</table>';
+            } else {
+              ?>
+                <h1 class="main-heading">You have no pending cards to download</h1>
+              <?php
+            }
+        ?>
+    </div>
+    <div class="dark-background">
+      <div class="close"><p>+</p></div>
+      <div class="classic-preview">
+          <h1 class="name" id="fullName">Gabriel Donovan</h1>
+          <p class="designation" id="job">Business Analyst</p>
+          <h1 class="company" id="companyName">IBM Solutions</h1>
+          <p class="line" id="line1">Line1</p>
+          <p class="line" id="line2">Line2</p>
+      </div>
+      <button type="submit" name="download" id="download" class="uppercase download-btn">Download</button>
     </div>
     <div class="footer">
       <div class="social-link">

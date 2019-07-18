@@ -1,7 +1,6 @@
 <?php
 error_reporting(0);
 session_start();
-include 'connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +52,15 @@ include 'connection.php';
         wedding, we can help you generate thousands of cards in seconds.
       </p>
       <div class="card-template">
-        <div class="card-template"></div>
-        <div class="card-template"></div>
-        <div class="card-template"></div>
+        <div class="card-template">
+          <img src="./img/card-template1.png" alt="">
+        </div>
+        <div class="card-template">
+          <img src="./img/card-template2.png" alt="">
+        </div>
+        <div class="card-template">
+          <img src="./img/card-template3.png" alt="">
+        </div>
       </div>
       <a href="#" class="browse uppercase">browse all the visiting cards</a>
     </div>

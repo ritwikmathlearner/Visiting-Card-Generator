@@ -54,7 +54,7 @@ if(isset($_SESSION["customer"]) || isset($_SESSION["admin"])) {
             <input type="password" name="password" placeholder="********">
           </div>
           <input type="submit" value="Submit" name="login" class="uppercase">
-          <p>Not a member yet? <a href="#">create a free account!</a></p>
+          <p>Not a member yet? <a href="register.php">create a free account!</a></p>
         </form>
     </div>
     <div class="footer">

@@ -1,3 +1,7 @@
+<?php
+error_reporting(0);
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,11 +15,20 @@
     <div class="navbar">
       <div class="visiting card">Card Generator</div>
       <ul class="menu uppercase">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Cards</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login/Register</a></li>
+      <li><a href="index.php">Home</a></li>
+        <li><a href="card.php">Cards</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <?php 
+            if(!isset($_SESSION["customer"])) {
+        ?>
+        <li><a href="login.php">Login/Register</a></li>
+        <?php 
+            } else {
+        ?>
+            <li><a href="logout.php">Logout</a></li>
+            <li><a href="account.php">Account</a></li>
+        <?php } ?>
       </ul>
     </div>
     <div class="header half-page">
@@ -26,13 +39,13 @@
       <!-- <a href="#generates" class="uppercase slogan">Generate</a> -->
     </div>
     <div class="card-generate" id="generate">
-        <form action="" class="card-details">
+        <form action="visitingcard.php" method="post" class="card-details">
             <div class="card-generate-details">Details
                 <div class="arrow"></div>
             </div>
-            <select name="card-type" id="">
-                <option value="1">Classic</option>
-                <option value="2">Modern</option>
+            <select name="card-type" id="card-type">
+                <option value="Classic">Classic</option>
+                <option value="Modern">Modern</option>
             </select>
             <input type="text" name="fullname" id="fullname-input" value="Name Surname">
             <input type="text" name="Designation" id="designation-input" value="Designation">

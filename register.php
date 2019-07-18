@@ -32,7 +32,7 @@ if(isset($_SESSION["customer"]) || isset($_SESSION["admin"])) {
         <form action="user.php" method="post" class="user-form">
         <div>
             <label for="name">Name</label>
-            <input type="text" placeholder="Enter your full name" name="email">
+            <input type="text" placeholder="Enter your full name" name="name">
         </div>
          <div>
             <label for="email">Email</label>
@@ -43,7 +43,7 @@ if(isset($_SESSION["customer"]) || isset($_SESSION["admin"])) {
             <input type="password" name="password" placeholder="********">
           </div>
           <input type="submit" name="register" value="Submit" class="uppercase">
-          <p>Already a member? <a href="#">login!</a></p>
+          <p>Already a member? <a href="login.php">login!</a></p>
         </form>
     </div>
     <div class="footer">
