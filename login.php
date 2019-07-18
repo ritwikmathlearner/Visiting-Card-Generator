@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(isset($_SESSION["register"])){
+    $register_message = "Registration successful! Please login now";
+}
+if(isset($_SESSION["customer"]) || isset($_SESSION["admin"])) {
+    header("Location: index.php");
+    // echo $_SESSION["customer"];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +32,19 @@
         <h1 class="main-heading underline">
           Login
         </h1>
-        <form action="" class="user-form">
+        <p>
+          <?php
+            if(isset($register_message)){
+              echo '<h3 class="success">' . $register_message . '</h3>';
+              unset($_SESSION["register"]);   
+            }
+            if(isset($_SESSION["login"])){
+              echo '<h3 class="error">' . $_SESSION["login"] . '</h3>';
+              unset($_SESSION["login"]);   
+            }
+          ?>
+        </p>
+        <form action="user.php" method="post" class="user-form">
           <div>
             <label for="email">Email</label>
             <input type="email" placeholder="Enter your email" name="email">

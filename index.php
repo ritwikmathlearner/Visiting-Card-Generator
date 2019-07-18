@@ -1,3 +1,8 @@
+<?php
+error_reporting(0);
+session_start();
+include 'connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,11 +16,20 @@
     <div class="navbar">
       <div class="visiting card">Card Generator</div>
       <ul class="menu uppercase">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Cards</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login/Register</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="card.php">Cards</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <?php 
+            if(!isset($_SESSION["customer"])) {
+        ?>
+        <li><a href="login.php">Login/Register</a></li>
+        <?php 
+            } else {
+        ?>
+            <li><a href="logout.php">Logout</a></li>
+            <li><a href="account.php">Account</a></li>
+        <?php } ?>
       </ul>
     </div>
     <div class="header">

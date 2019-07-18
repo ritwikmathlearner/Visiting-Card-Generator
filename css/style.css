@@ -10,6 +10,12 @@ body {
 form {
   width: 100%;
 }
+.error {
+  color: #b3352e;
+}
+.success {
+  color: #2eb330;
+}
 h1,
 h2 {
   font-family: "Literata", serif;
@@ -247,7 +253,7 @@ input[type=submit]:hover, button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1.5rem 0;
+  margin: .5rem 0;
 }
 .user-form > div label {
   display: inline-block;

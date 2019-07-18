@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION["customer"]) || isset($_SESSION["admin"])) {
+    header("Location: index.php");
+    // echo $_SESSION["customer"];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,10 +29,10 @@
         <h1 class="main-heading underline">
           Register
         </h1>
-        <form action="" class="user-form">
+        <form action="user.php" method="post" class="user-form">
         <div>
             <label for="name">Name</label>
-            <input type="Name" placeholder="Enter your full name" name="email">
+            <input type="text" placeholder="Enter your full name" name="email">
         </div>
          <div>
             <label for="email">Email</label>
@@ -35,7 +42,7 @@
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="********">
           </div>
-          <input type="submit" value="Submit" name="login" class="uppercase">
+          <input type="submit" name="register" value="Submit" class="uppercase">
           <p>Already a member? <a href="#">login!</a></p>
         </form>
     </div>
