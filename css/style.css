@@ -480,3 +480,6 @@ input {
   cursor: pointer;
   padding: 1rem 1.75rem;
 }
+#card-show {
+  display: none;
+}

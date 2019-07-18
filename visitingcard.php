@@ -2,6 +2,7 @@
 session_start();
 include 'connection.php';
 if(isset($_POST['card-create'])) {
+    $user = $_SESSION["customer_email"];
     $type =  $_POST['card-type'];
     $fullname = $_POST['fullname'];
     $Designation = $_POST['Designation'];
@@ -14,9 +15,11 @@ if(isset($_POST['card-create'])) {
             while($row = $result_checkID->fetch_assoc()) {
                 $cardID = $row["highest"] + 1;
             }
+        } else {
+            $cardID = 1;
         }
     $sql = "INSERT INTO visitingcard
-                VALUES ($cardID, '$fullname', '$Designation', '$company', '$line1', '$line2', '$type', 'pending')";
+                VALUES ($cardID, '$user', '$fullname', '$Designation', '$company', '$line1', '$line2', '$type', 'pending')";
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
         } else {

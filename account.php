@@ -44,7 +44,8 @@ include 'connection.php';
             Your Pending Cards
         </h1>
         <?php
-          $sql = "SELECT cardID, name, designation, cardType FROM visitingcard where status='pending'";
+          $user = $_SESSION["customer_email"];
+          $sql = "SELECT cardID, name, designation, cardType FROM visitingcard where status='pending' and user= '$user'";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
         ?>
@@ -64,7 +65,9 @@ include 'connection.php';
                       <td><?php echo $row["name"] ?></td>
                       <td><?php echo $row["designation"] ?></td>
                       <td><?php echo $row["cardType"] ?></td>
-                      <td><button type="submit" name="download">Preview</button></td>
+                      <form action="#" method="post">
+                      <td><button type="submit" value="<?php echo $row["cardID"] ?>" name="download" id="preview" onclick="displayCard()">Preview</button></td>
+                      </form>
                     </tr>
                 <?php
               } 
@@ -76,14 +79,27 @@ include 'connection.php';
             }
         ?>
     </div>
-    <div class="dark-background">
-      <div class="close"><p>+</p></div>
+    <div class="dark-background" id="card-show">
+      <div class="close" id="close"><p onclick="closeCard()">+</p></div>
       <div class="classic-preview">
-          <h1 class="name" id="fullName">Gabriel Donovan</h1>
+      <?php
+          if(isset($_POST['download'])) {
+            $cardID = $_POST['download'];
+          $sql = "SELECT name, designation, company, line1, line2 FROM visitingcard where cardID = '$cardID'";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+        ?>
+          <h1 class="name" id="fullName"><?php echo $row['name'] ?></h1>
           <p class="designation" id="job">Business Analyst</p>
           <h1 class="company" id="companyName">IBM Solutions</h1>
           <p class="line" id="line1">Line1</p>
           <p class="line" id="line2">Line2</p>
+          <?php
+              } 
+            }
+          }
+              ?>
       </div>
       <button type="submit" name="download" id="download" class="uppercase download-btn">Download</button>
     </div>
@@ -101,5 +117,6 @@ include 'connection.php';
       crossorigin="anonymous"
     ></script>
     <script src="./js/navigation.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
