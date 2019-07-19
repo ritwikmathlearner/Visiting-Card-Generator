@@ -45,7 +45,7 @@ include 'connection.php';
         </h1>
         <?php
           $user = $_SESSION["customer_email"];
-          $sql = "SELECT cardID, name, designation, cardType FROM visitingcard where status='pending' and user= '$user'";
+          $sql = "SELECT cardID, name, designation, cardType FROM visitingcard where status='pending' or status='approved' and user= '$user'";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
         ?>
@@ -65,9 +65,7 @@ include 'connection.php';
                       <td><?php echo $row["name"] ?></td>
                       <td><?php echo $row["designation"] ?></td>
                       <td><?php echo $row["cardType"] ?></td>
-                      <form action="#" method="post">
-                      <td><button type="submit" value="<?php echo $row["cardID"] ?>" name="download" id="preview" onclick="displayCard()">Preview</button></td>
-                      </form>
+                      <td><button type="submit" name="download" id="preview" onclick="displayCard()">Preview</button></td>
                     </tr>
                 <?php
               } 
@@ -83,25 +81,34 @@ include 'connection.php';
       <div class="close" id="close"><p onclick="closeCard()">+</p></div>
       <div class="classic-preview">
       <?php
-          if(isset($_POST['download'])) {
-            $cardID = $_POST['download'];
-          $sql = "SELECT name, designation, company, line1, line2 FROM visitingcard where cardID = '$cardID'";
+          $cust = $_SESSION["customer_email"];
+          $sql = "SELECT name, designation, company, line1, line2, status FROM visitingcard where user = '$cust'";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+              $status = $row['status'];
         ?>
           <h1 class="name" id="fullName"><?php echo $row['name'] ?></h1>
-          <p class="designation" id="job">Business Analyst</p>
-          <h1 class="company" id="companyName">IBM Solutions</h1>
-          <p class="line" id="line1">Line1</p>
-          <p class="line" id="line2">Line2</p>
+          <p class="designation" id="job"><?php echo $row['designation'] ?></p>
+          <h1 class="company" id="companyName"><?php echo $row['company'] ?></h1>
+          <p class="line" id="line1"><?php echo $row['line1'] ?></p>
+          <p class="line" id="line2"><?php echo $row['line2'] ?></p>
           <?php
               } 
             }
-          }
               ?>
       </div>
+      <?php
+        if(($status == 'pending')) {
+          echo '<h3 class="error">Your card is not approved yet</h3>';
+          echo $status;
+          echo $user;
+        } else {
+      ?>
       <button type="submit" name="download" id="download" class="uppercase download-btn">Download</button>
+      <?php
+      }
+      ?>      
     </div>
     <div class="footer">
       <div class="social-link">
