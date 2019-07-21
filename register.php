@@ -18,11 +18,11 @@ if(isset($_SESSION["customer"]) || isset($_SESSION["admin"])) {
     <div class="navbar">
       <div class="logo">Card Generator</div>
       <ul class="menu uppercase">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Cards</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login/Register</a></li>
+      <li><a href="index.php">Home</a></li>
+        <li><a href="card.php">Cards</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li><a href="login.php">Login/Register</a></li>
       </ul>
     </div>
     <div class="user-management">
