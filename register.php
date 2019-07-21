@@ -16,7 +16,7 @@ if(isset($_SESSION["customer"]) || isset($_SESSION["admin"])) {
   </head>
   <body>
     <div class="navbar">
-      <div class="visiting card">Card Generator</div>
+      <div class="logo">Card Generator</div>
       <ul class="menu uppercase">
         <li><a href="#">Home</a></li>
         <li><a href="#">Cards</a></li>

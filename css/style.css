@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Literata|Roboto&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Literata|Roboto&display=swap"); */
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Pacifico|Roboto&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -17,10 +18,12 @@ form {
   color: #2eb330;
 }
 h1,
-h2 {
-  font-family: "Literata", serif;
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
 }
 input[type="submit"],
+input[type="button"],
 button {
   cursor: pointer !important;
 }
@@ -55,8 +58,11 @@ button:hover {
   z-index: 1;
 }
 .logo {
+  font-family: "Pacifico", cursive;
   letter-spacing: 0.25rem;
   color: #2e2f30;
+  font-size: 1.5rem;
+  padding: 0.25rem;
 }
 .menu {
   display: flex;
@@ -191,7 +197,7 @@ button:hover {
   margin: 1.25rem 1rem;
 }
 .showcase > div {
-  height: 100%;
+  height: 70%;
   width: 100%;
   padding: 0 0.75rem;
   display: flex;
@@ -206,11 +212,16 @@ button:hover {
   margin: 0.5rem 0;
 }
 .number {
-  height: 20px;
-  width: 20px;
-  background: #fff;
-  border: 1px solid #2e2f30;
+  height: 40px;
+  width: 40px;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
   border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .special {
   color: #16416b;
@@ -345,7 +356,8 @@ input {
   margin: 0.75rem 0;
   padding: 0.5rem 0.25rem;
 }
-.card-details input[type="submit"] {
+.card-details input[type="submit"],
+input[type="button"] {
   width: 100%;
   background: #2e2f30;
   color: #fff;
@@ -388,6 +400,7 @@ input {
   align-items: center;
 }
 .classic-preview {
+  display: block;
   height: 400px;
   width: 800px;
   background: url("../img/classic.png") no-repeat center center/cover;
@@ -422,6 +435,50 @@ input {
   color: #000;
   text-align: center;
   margin: 1.5rem;
+}
+.modern-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  height: 400px;
+  width: 800px;
+  background: url("../img/modern.png") no-repeat center center/cover;
+  color: #fff;
+  position: relative;
+}
+.modern-preview div {
+  flex: 1;
+  height: 100%;
+}
+.modern-preview .name {
+  text-align: left;
+  color: #16416b;
+  margin-top: 7rem;
+  margin-left: 1rem;
+}
+.modern-preview .designation {
+  position: absolute;
+  color: #16416b;
+  margin-left: 1rem;
+  font-weight: bolder;
+  border-bottom: 1px solid #16416b;
+}
+.modern-preview .company {
+  text-align: center;
+  margin-top: 13rem;
+  font-size: 3rem;
+  color: #16416b;
+}
+.modern-preview .line:nth-child(3) {
+  color: #16416b;
+  margin-top: 5.3rem;
+  margin-left: 4rem;
+}
+.modern-preview .line:nth-child(4) {
+  color: #16416b;
+  margin-left: 4rem;
+  margin-top: 1.1rem !important;
 }
 .cards {
   width: 80%;
@@ -482,4 +539,11 @@ input {
 }
 #card-show {
   display: none;
+}
+.warning {
+  text-align: justify;
+  background: #fca456;
+  padding: 1rem 0.35rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
 }

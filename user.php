@@ -11,18 +11,18 @@
                 $userType = $row["userType"];
                 $name = $row["name"];
                 // echo $userType . " " . $name;
-                if($userType = "customer"){
+                if($userType == "customer"){
                     // echo 'You are a customer';
                     $_SESSION["customer"] = $name;
-                    $_SESSION["customer_email"] = $email;  
+                    $_SESSION["customer_email"] = $email;
+                    header("Location: index.php");  
                 }
                 else {
                     $_SESSION["admin"] = $name;
                     $_SESSION["admin_email"] = $email;
+                    header("Location: admin.php");
                 }
             }
-            header("Location: index.php");
-            // echo $_SESSION["customer"];
         }
         else {
             $sql = "SELECT * FROM user where email = '$email'";

@@ -14,7 +14,7 @@ include 'connection.php';
   </head>
   <body>
     <div class="navbar">
-      <div class="visiting card">Card Generator</div>
+      <div class="logo">Card Generator</div>
       <ul class="menu uppercase">
       <li><a href="index.php">Home</a></li>
         <li><a href="card.php">Cards</a></li>
@@ -35,7 +35,11 @@ include 'connection.php';
     <div class="header half-page">
       <h1 class="primary-heading">Welcome 
         <?php
-            echo $_SESSION["customer"];
+            if(isset($_SESSION["customer"])){
+            echo $_SESSION["customer"]; }
+            else {
+              echo '<h1 class="error">You have to login first</h1>';
+            }
         ?>
       </h1>
     </div>
@@ -45,7 +49,7 @@ include 'connection.php';
         </h1>
         <?php
           $user = $_SESSION["customer_email"];
-          $sql = "SELECT cardID, name, designation, cardType FROM visitingcard where status='pending' or status='approved' and user= '$user'";
+          $sql = "SELECT cardID, name, designation, company, line1, line2, status, cardType FROM visitingcard where user= '$user' AND (status='pending' or status='approved')";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
         ?>
@@ -59,12 +63,22 @@ include 'connection.php';
             </tr>
         <?php
               while($row = $result->fetch_assoc()) {
+                $cardType = $row["cardType"];
+                $cardID = $row["cardID"];
+                $name = $row["name"];
+                $designation = $row["designation"];
+                $company = $row["company"];
+                $line1 = $row["line1"];
+                $line2 = $row["line2"];
+                $status = $row["status"];
+                $cardType = $row["cardType"];
+
                 ?>
                     <tr>
-                      <td><?php echo $row["cardID"] ?></td>
-                      <td><?php echo $row["name"] ?></td>
-                      <td><?php echo $row["designation"] ?></td>
-                      <td><?php echo $row["cardType"] ?></td>
+                      <td><?php echo $cardID ?></td>
+                      <td><?php echo $name ?></td>
+                      <td><?php echo $designation ?></td>
+                      <td><?php echo $cardType ?></td>
                       <td><button type="submit" name="download" id="preview" onclick="displayCard()">Preview</button></td>
                     </tr>
                 <?php
@@ -79,30 +93,36 @@ include 'connection.php';
     </div>
     <div class="dark-background" id="card-show">
       <div class="close" id="close"><p onclick="closeCard()">+</p></div>
-      <div class="classic-preview">
       <?php
-          $cust = $_SESSION["customer_email"];
-          $sql = "SELECT name, designation, company, line1, line2, status FROM visitingcard where user = '$cust'";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-              $status = $row['status'];
+          if($cardType == "Classic"){
         ?>
-          <h1 class="name" id="fullName"><?php echo $row['name'] ?></h1>
-          <p class="designation" id="job"><?php echo $row['designation'] ?></p>
-          <h1 class="company" id="companyName"><?php echo $row['company'] ?></h1>
-          <p class="line" id="line1"><?php echo $row['line1'] ?></p>
-          <p class="line" id="line2"><?php echo $row['line2'] ?></p>
+          <div class="classic-preview">
+            <h1 class="name" id="fullName"><?php echo $name ?></h1>
+            <p class="designation" id="job"><?php echo $designation ?></p>
+            <h1 class="company" id="companyName"><?php echo $company ?></h1>
+            <p class="line" id="line1"><?php echo $line1 ?></p>
+            <p class="line" id="line2"><?php echo $line2 ?></p>
+          </div>
           <?php
-              } 
+              }
+              else { ?>
+              <div class="modern-preview" id="modern-preview" style="display: flex;">
+                <div class="right-side">
+                  <h1 class="company" id="modern-companyName"><?php echo $company ?></h1>
+                </div>
+                <div class="left-side">
+                  <h1 class="name" id="modern-fullName"><?php echo $name ?></h1>
+                  <p class="designation" id="modern-job"><?php echo $designation ?></p>
+                  <p class="line" id="modern-line1"><?php echo $line1 ?></p>
+                  <p class="line" id="modern-line2"><?php echo $line2 ?></p>
+                </div>
+            </div>
+                <?php
             }
-              ?>
-      </div>
-      <?php
         if(($status == 'pending')) {
           echo '<h3 class="error">Your card is not approved yet</h3>';
-          echo $status;
-          echo $user;
+          // echo $status;
+          // echo $user;
         } else {
       ?>
       <button type="submit" name="download" id="download" class="uppercase download-btn">Download</button>

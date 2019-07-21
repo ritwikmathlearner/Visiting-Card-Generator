@@ -29,4 +29,16 @@ if(isset($_POST['card-create'])) {
         // echo $name . ' ' . $email . ' ' . $pass;
         header("Location: account.php");
 }
+if(isset($_POST['approve'])){
+    $request = $_POST['approve'];
+    // echo $request;
+    $sql = "UPDATE visitingcard SET status = 'approved' WHERE cardID=$request";
+    if ($conn->query($sql) === TRUE) {
+        header('Location: admin.php');
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+
+    $conn->close();
+}
 ?>

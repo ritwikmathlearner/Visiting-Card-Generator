@@ -13,7 +13,7 @@ session_start();
   </head>
   <body>
     <div class="navbar">
-      <div class="visiting card">Card Generator</div>
+      <div class="logo">Card Generator</div>
       <ul class="menu uppercase">
       <li><a href="index.php">Home</a></li>
         <li><a href="card.php">Cards</a></li>

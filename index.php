@@ -13,7 +13,7 @@ session_start();
   </head>
   <body>
     <div class="navbar">
-      <div class="visiting card">Card Generator</div>
+      <div class="logo">Card Generator</div>
       <ul class="menu uppercase">
         <li><a href="index.php">Home</a></li>
         <li><a href="card.php">Cards</a></li>
@@ -37,9 +37,9 @@ session_start();
         Welcome to Card Generator... The World's #1 Visiting Card Maker. Try it
         for FREE!
       </h2>
-      <form action="" class="create-card">
-        <input type="text" placeholder="Enter Your Business Name" />
-        <button type="submit" class="uppercase">Create Cards</button>
+      <form action="card.php" method='get' class="create-card">
+        <input type="text" placeholder="Enter Your Business Name" name="company" />
+        <button type="submit" class="uppercase" name="header-submit" value="company-name">Create Cards</button>
       </form>
       <a href="#howitworks" class="uppercase slogan">See How it Works</a>
     </div>
