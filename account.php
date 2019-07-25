@@ -79,7 +79,10 @@ include 'connection.php';
                       <td><?php echo $name ?></td>
                       <td><?php echo $designation ?></td>
                       <td><?php echo $cardType ?></td>
-                      <td><button type="submit" name="download" id="preview" onclick="displayCard()">Preview</button></td>
+                      <td><button type="submit" name="preview" id="preview" onclick="displayCard()">Preview</button>
+                      <form action="visitingcard.php" method="post" class="downloaded">
+                        <button type="submit" name="downloaded" id="downloaded" value="<?php echo $cardID ?>">Downloaded</button></td>
+                      </form>
                     </tr>
                 <?php
               } 
@@ -96,7 +99,7 @@ include 'connection.php';
       <?php
           if($cardType == "Classic"){
         ?>
-          <div class="classic-preview">
+          <div class="classic-preview" <?php if($cardType == "Classic"){ echo 'id="preview-card"';} ?>>
             <h1 class="name" id="fullName"><?php echo $name ?></h1>
             <p class="designation" id="job"><?php echo $designation ?></p>
             <h1 class="company" id="companyName"><?php echo $company ?></h1>
@@ -106,7 +109,7 @@ include 'connection.php';
           <?php
               }
               else { ?>
-              <div class="modern-preview" id="modern-preview" style="display: flex;">
+              <div class="modern-preview" <?php if($cardType == "Modern"){ echo 'id="preview-card"';} ?> style="display: flex;">
                 <div class="right-side">
                   <h1 class="company" id="modern-companyName"><?php echo $company ?></h1>
                 </div>
@@ -125,7 +128,7 @@ include 'connection.php';
           // echo $user;
         } else {
       ?>
-      <button type="submit" name="download" id="download" class="uppercase download-btn">Download</button>
+        <button type="submit" name="download" id="download" class="uppercase download-btn">Download</button>
       <?php
       }
       ?>      
@@ -138,11 +141,9 @@ include 'connection.php';
       </div>
       <p>&copy; 2019 Mohammed Khaled Uddin</p>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/html2canvas.min.js"></script>
+    <script src="./js/canvas2image.js"></script>
     <script src="./js/navigation.js"></script>
     <script src="./js/main.js"></script>
   </body>

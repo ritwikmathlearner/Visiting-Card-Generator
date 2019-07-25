@@ -41,4 +41,16 @@ if(isset($_POST['approve'])){
 
     $conn->close();
 }
+if(isset($_POST['downloaded'])){
+    $request = $_POST['downloaded'];
+    // echo $request;
+    $sql = "UPDATE visitingcard SET status = 'downloaded' WHERE cardID=$request";
+    if ($conn->query($sql) === TRUE) {
+        header('Location: index.php');
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+
+    $conn->close();
+}
 ?>

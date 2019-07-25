@@ -40,3 +40,17 @@ function updateCard() {
     document.getElementById("modern-line2").innerHTML = line2;
   }
 }
+$("#download").click(function() {
+  var elm = $("#preview-card").get(0);
+  var length = "800";
+  var width = "400";
+  var type = "jpg";
+  var filename = "card";
+  html2canvas(elm).then(function(canvas) {
+    var canWidth = canvas.width;
+    var canHeight = canvas.height;
+    var img = Canvas2Image.convertToImage(canvas, canWidth, canHeight);
+    // $("#preview-card").after(img);
+    Canvas2Image.saveAsImage(canvas, length, width, type, filename);
+  });
+});
