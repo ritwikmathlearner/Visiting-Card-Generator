@@ -405,7 +405,6 @@ input[type="button"] {
   width: 800px;
   background: url("../img/classic.png") no-repeat center center/cover;
   color: #fff;
-  border-radius: 30px;
   position: relative;
 }
 .classic-preview .name {
